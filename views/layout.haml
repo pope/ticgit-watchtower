@@ -1,0 +1,12 @@
+%html
+  %head
+    %meta{'http-equiv' => 'Content-Type', :content => 'text/html; charset=utf-8'}
+    %title= title
+    %link{:rel => 'stylesheet', :href => "http://yui.yahooapis.com/#{$yui_version}/build/reset-fonts-grids/reset-fonts-grids.css", :type => 'text/css', :media => 'screen'}
+    %link{:rel => 'stylesheet', :href => '/screen.css', :type => 'text/css', :media => 'screen'}
+
+  %body
+    #content= yield
+  %script{:type => "text/javascript", :src => "http://yui.yahooapis.com/#{$yui_version}/build/yahoo-dom-event/yahoo-dom-event.js"}
+  %script{:type => "text/javascript", :src => "/application.js"}
+
