@@ -5,7 +5,7 @@
 #
 # author : K. Adam Christensen
 
-%w(rubygems sinatra git ticgit haml).each do |dependency| 
+%w(rubygems sinatra git ticgit haml gravatar).each do |dependency| 
   begin
     require dependency
   rescue LoadError => e
@@ -19,11 +19,14 @@ get('/screen.css') do
 end
 
 $yui_version = '2.5.1'
+$ticgit = TicGit.open('.')
 
 before do
   @saved = $ticgit.config['list_options'].keys rescue []
 end
 
 get('/') do
-  haml :index, :locals => { :title => "All Tickets" }
+  @title = "All Tickets"
+  @tickets = $ticgit.ticket_list(:order => 'date.desc')
+  haml :index
 end
