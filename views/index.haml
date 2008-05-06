@@ -17,8 +17,6 @@
       is assigned to
       %strong= t.assigned_name
       %br
-      %a{:href => "/tickets/#{t.ticket_id}"}= t.ticket_id[0,6]
-      \/
       %span{:class => t.state}= t.state
       \/
       - unless t.tags.empty?
