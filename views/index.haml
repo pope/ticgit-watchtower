@@ -12,7 +12,7 @@
     
     / The ticket
     %p.ticket
-      %img.avatar{:src => Gravatar.new(t.email, :size => 40), :alt => "#{t.email}'s avatar"}
+      %img.avatar{:src => Gravatar.new(t.assigned, :size => 40), :alt => "#{t.assigned}'s avatar"}
       %a.title{:href => "/tickets/#{t.ticket_id}"}= t.title
       is assigned to
       %strong= t.assigned_name
