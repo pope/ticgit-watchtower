@@ -12,7 +12,7 @@
     
     / The ticket
     %p.ticket
-      %img.avatar{:src => Gravatar.new(t.assigned, :size => 40), :alt => "#{t.assigned}'s avatar"}
+      %img.avatar{:src => Gravatar.new(t.assigned, :size => 30), :alt => "#{t.assigned}'s avatar"}
       %a.title{:href => "/tickets/#{t.ticket_id}"}= t.title
       is assigned to
       %strong= t.assigned_name
@@ -20,8 +20,7 @@
       %a{:href => "/tickets/#{t.ticket_id}"}= t.ticket_id[0,6]
       \/
       %span{:class => t.state}= t.state
-      %br
-      %strong Tagged: 
+      \/
       - unless t.tags.empty?
         - t.tags.each do |tag|
           %a{:href => "/tags/#{tag}"}= tag
