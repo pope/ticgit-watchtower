@@ -1,12 +1,36 @@
 %html
   %head
     %meta{'http-equiv' => 'Content-Type', :content => 'text/html; charset=utf-8'}
-    %title= title
+    %title= title + " - Watchtower"
     %link{:rel => 'stylesheet', :href => "http://yui.yahooapis.com/#{$yui_version}/build/reset-fonts-grids/reset-fonts-grids.css", :type => 'text/css', :media => 'screen'}
     %link{:rel => 'stylesheet', :href => '/screen.css', :type => 'text/css', :media => 'screen'}
 
-  %body
-    #content= yield
+  %body{ :id => title.gsub(/\s/, '') + "Page" }
+    #Content
+      #Title
+        %h2 Watchtower
+        %p.tagline issue tracking though git
+      #Navigation
+        %ul.global
+          %li#AllTicketsLink
+            %a{:href => '/'} All
+          %li#OpenedTicketsLink
+            %a{:href => '/tickets/state/opened'} Opened
+          %li#ResolvedTicketsLink
+            %a{:href => '/tickets/state/resolved'} Resolved
+          %li#HoldTicketsLink
+            %a{:href => '/tickets/state/hold'} Hold
+          %li#InvalidTicketsLink
+            %a{:href => '/tickets/state/invalid'} Invalid
+        #SavedViews
+          %h3 Saved Views:
+          - unless @saved.empty?
+            %ul
+            - @saved.each do |s|
+              %li
+                %a{:href => "/tickets/saved_view/\#{s}"}= s
+          - else
+            %p You have no saved views
+      #Main= yield
   %script{:type => "text/javascript", :src => "http://yui.yahooapis.com/#{$yui_version}/build/yahoo-dom-event/yahoo-dom-event.js"}
   %script{:type => "text/javascript", :src => "/application.js"}
-

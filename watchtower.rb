@@ -21,9 +21,9 @@ end
 $yui_version = '2.5.1'
 
 before do
-  @saved = nil #$ticgit.config['list_options'].keys rescue []
+  @saved = $ticgit.config['list_options'].keys rescue []
 end
 
 get('/') do
-  haml :index, :locals => { :title => "Hello" }
+  haml :index, :locals => { :title => "All Tickets" }
 end
