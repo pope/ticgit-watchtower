@@ -3,7 +3,7 @@
 # starts a sinatra based web server that provides an interface to 
 # your ticgit tickets
 #
-# author : K. Adam Christensen (pope@shifteleven.com)
+# author : K. Adam Christensen
 
 %w(rubygems sinatra git ticgit haml).each do |dependency| 
   begin
