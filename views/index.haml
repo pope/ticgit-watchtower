@@ -4,15 +4,18 @@
 - else
   - current_date = nil
   - @tickets.each do |t|
+    / Date Stuff
     - opened = t.opened.strftime("%m/%d/%y")
     - unless current_date == opened
       - current_date = opened
-      %p.date= current_date
+      %h3.date= current_date
+    
+    / The ticket
     %p.ticket
-      %img.avatar{:src => Gravatar.new(t.email), :alt => "#{t.email}'s avatar"}
-      %a{:href => "/tickets/#{t.ticket_id}"}= t.title
+      %img.avatar{:src => Gravatar.new(t.email, :size => 40), :alt => "#{t.email}'s avatar"}
+      %a.title{:href => "/tickets/#{t.ticket_id}"}= t.title
       is assigned to
-      = t.assigned_name
+      %strong= t.assigned_name
       %br
       %a{:href => "/tickets/#{t.ticket_id}"}= t.ticket_id[0,6]
       \/

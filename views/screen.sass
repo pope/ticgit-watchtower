@@ -2,14 +2,20 @@ body
   :color #333
 
 a
-  :color #96CBFE
+  :color #1C90FD
   :text-decoration none
+
+a:hover
+  :background-color #FFFFB6
 
 h1
   :font
     :size 197%
-    :weight bold
     :margin 1em 0
+    :family "Avant Garde",Arial,sans-serif
+
+strong
+  :font-weight bold
 
 #Content
   :width 960px
@@ -43,6 +49,7 @@ h1
 
     a
       :text-shadow #000 0px 1px 3px
+      :color #96CBFE
   
   #SavedViews
     :background-color #A8FF60
@@ -66,6 +73,30 @@ h1
   :-webkit-border-bottom-right-radius 8px
   :-webkit-border-bottom-left-radius 8px
 
+h3.date
+  :margin 0.5em 0
+  :font
+    :weight bold
+    :size 146.5%
+
+.ticket
+  :border
+    :top 1px solid #CCC
+    :bottom 1px solid #CCC
+  :padding 0.5em 0
+  :line-height 1.4em
+  :margin -1px 0 0 1em
+  
+  img
+    :float left
+    :display block
+    :border 1px solid #666
+    :padding 2px
+    :margin 0 1em 0 0.5em
+    :background #FFF
+
+  .title
+    :font-size 131%
 
 #AllTicketsPage #AllTicketsLink,
 #OpenedTicketsPage #OpenedTicketsLink,
@@ -73,7 +104,8 @@ h1
   :border-top 3px solid #A8FF60
 
 #Navigation ul.global:after,
-#Navigation #SavedViews:after
+#Navigation #SavedViews:after,
+.ticket:after
   :content '.'
   :height 0
   :visibility hidden
