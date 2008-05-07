@@ -19,8 +19,9 @@
       %br
       %span{:class => t.state}= t.state
       \/
-      - unless t.tags.empty?
-        - t.tags.each do |tag|
-          %a{:href => "/tags/#{tag}"}= tag
-      - else
-        none
+      %span.tags
+        - unless t.tags.empty?
+          - t.tags.each do |tag|
+            %a{:href => "/tags/#{tag}"}= tag
+        - else
+          none
