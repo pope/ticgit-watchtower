@@ -1,0 +1,30 @@
+.ticket
+  %div.avatar
+    %img{:src => Gravatar.new(@ticket.assigned, :size => 60), :alt => "#{@ticket.assigned_name}'s avatar"}
+  %h1= @title
+  .details
+    assigned to
+    %strong= @ticket.assigned_name
+    \/
+    = @ticket.opened
+    %br 
+    %span{:class => @ticket.state}= @ticket.state
+    \/
+    %span.tags
+      - unless @ticket.tags.empty?
+        - @ticket.tags.each do |tag|
+          %a{:href => "/tickets/tags/#{tag}"}= tag
+      - else
+        none
+
+%h3 Comments
+
+- @ticket.comments.each do |c|
+  .comment
+    %p
+      %img.avatar{:src => Gravatar.new(c.user, :size => 30), :alt => "#{c.user}'s avatar"}
+      Added
+      = c.added.strftime("%m/%d %H:%M")
+      by
+      %strong= c.user
+    %p= c.comment

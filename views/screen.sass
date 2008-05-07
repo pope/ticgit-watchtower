@@ -66,7 +66,7 @@ strong
     :-webkit-border-bottom-right-radius 8px
     :-webkit-border-bottom-left-radius 8px
 
-    h3
+    h4
       :font-weight bold
       :float left
       :margin-right 1em
@@ -81,12 +81,26 @@ strong
   :-webkit-border-bottom-right-radius 8px
   :-webkit-border-bottom-left-radius 8px
 
-h3.date
+h3
   :margin 0.5em 0
   :font
     :weight bold
     :size 116%
 
+.open
+  :background-color= !open
+  :color #FFF
+.resolved
+  :background-color= !resolved
+  :color #FFF
+.hold
+  :background-color= !hold
+  :color #FFF
+.invalid
+  :background-color= !invalid
+  :color #FFF
+
+.comment,
 .ticket
   :border
     :top 1px solid #CCC
@@ -94,28 +108,7 @@ h3.date
   :padding 0.5em 0
   :line-height 1.4em
   :margin -1px 0 0 1em
-
-  .open
-    :background-color= !open
-    :color #FFF
-  .resolved
-    :background-color= !resolved
-    :color #FFF
-  .hold
-    :background-color= !hold
-    :color #FFF
-  .invalid
-    :background-color= !invalid
-    :color #FFF
   
-  img
-    :float left
-    :display block
-    :border 1px solid #666
-    :padding 2px
-    :margin 0 0.6em 0 0.5em
-    :background #FFF
-
   .title
     :font-size 116%
 
@@ -124,14 +117,36 @@ h3.date
     a
       :background-color #EEE
 
+.comment .avatar,
+.ticket .avatar
+  :display block
+  :border 1px solid #666
+  :padding 2px
+  :margin 0 0.6em 0 0.5em
+  :background #FFF
+  :float left
+
+div.ticket
+  :padding 2em 1em
+  :border-top none
+  :background-color #EEE
+  :line-height 1.8em
+  :margin
+    :bottom 2em
+    :left 0
+
 #AllTicketsPage #AllTicketsLink
   :border-top= 3px solid #A8FF60
+
 #OpenTicketsPage #OpenTicketsLink
   :border-top= 3px solid !open
+
 #ResolvedTicketsPage #ResolvedTicketsLink
   :border-top= 3px solid !resolved
+
 #HoldTicketsPage #HoldTicketsLink
   :border-top= 3px solid !hold
+
 #InvalidTicketsPage #InvalidTicketsLink
   :border-top= 3px solid !invalid
 

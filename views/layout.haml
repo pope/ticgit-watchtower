@@ -25,7 +25,7 @@
           %li#NewTicketLink
             %a{:href => '/tickets/new'} New Ticket
         #SavedViews
-          %h3 Saved Views:
+          %h4 Saved Views:
           - unless @saved.empty?
             %ul
             - @saved.each do |s|

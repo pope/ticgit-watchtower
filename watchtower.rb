@@ -42,3 +42,9 @@ get('/tickets/tags/:tag') do
   @tickets = $ticgit.ticket_list(:tag => params[:tag], :order => 'date.desc')
   haml :list
 end
+
+get('/tickets/:ticket') do
+  @ticket = $ticgit.ticket_show(params[:ticket])
+  @title = @ticket.title
+  haml :show
+end
