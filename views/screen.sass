@@ -1,3 +1,8 @@
+!open= #67E600
+!resolved= #6961FF
+!hold= #F5B800
+!invalid= #FF6961
+
 body
   :color #333
 
@@ -10,7 +15,7 @@ a:hover
 
 h1
   :font
-    :size 197%
+    :size 182%
     :margin 1em 0
     :family "Avant Garde",Arial,sans-serif
 
@@ -80,7 +85,7 @@ h3.date
   :margin 0.5em 0
   :font
     :weight bold
-    :size 146.5%
+    :size 116%
 
 .ticket
   :border
@@ -89,6 +94,19 @@ h3.date
   :padding 0.5em 0
   :line-height 1.4em
   :margin -1px 0 0 1em
+
+  .open
+    :background-color= !open
+    :color #FFF
+  .resolved
+    :background-color= !resolved
+    :color #FFF
+  .hold
+    :background-color= !hold
+    :color #FFF
+  .invalid
+    :background-color= !invalid
+    :color #FFF
   
   img
     :float left
@@ -99,13 +117,18 @@ h3.date
     :background #FFF
 
   .title
-    :font-size 131%
+    :font-size 116%
 
-#AllTicketsPage #AllTicketsLink,
-#OpenTicketsPage #OpenTicketsLink,
-#ResolvedTicketsPage #ResolvedTicketsLink,
+#AllTicketsPage #AllTicketsLink
+  :border-top= 3px solid #A8FF60
+#OpenTicketsPage #OpenTicketsLink
+  :border-top= 3px solid !open
+#ResolvedTicketsPage #ResolvedTicketsLink
+  :border-top= 3px solid !resolved
+#HoldTicketsPage #HoldTicketsLink
+  :border-top= 3px solid !hold
 #InvalidTicketsPage #InvalidTicketsLink
-  :border-top 3px solid #A8FF60
+  :border-top= 3px solid !invalid
 
 #Navigation ul.global:after,
 #Navigation #SavedViews:after,
