@@ -36,3 +36,9 @@ get('/tickets/state/:state') do
   @tickets = $ticgit.ticket_list(:state => params[:state], :order => 'date.desc')
   haml :list
 end
+
+get('/tickets/tags/:tag') do
+  @title = "#{params[:tag].capitalize} Tickets"
+  @tickets = $ticgit.ticket_list(:tag => params[:tag], :order => 'date.desc')
+  haml :list
+end

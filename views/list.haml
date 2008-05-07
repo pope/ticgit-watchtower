@@ -22,6 +22,6 @@
       %span.tags
         - unless t.tags.empty?
           - t.tags.each do |tag|
-            %a{:href => "/tags/#{tag}"}= tag
+            %a{:href => "/tickets/tags/#{tag}"}= tag
         - else
           none
