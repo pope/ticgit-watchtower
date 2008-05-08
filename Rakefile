@@ -1,13 +1,13 @@
 # Variables
 view_files = Dir.glob('views/*')
 
-task :default => ['pkg/watchtower.rb']
+task :default => ['build/watchtower.rb']
 
-directory 'pkg'
+directory 'build'
 
 desc "Builds the single sinatra file for serving everything up"
-file 'pkg/watchtower.rb' => ['pkg', 'watchtower.rb'].concat(view_files) do
-  open('pkg/watchtower.rb', 'w') do |outfile|
+file 'build/watchtower.rb' => ['build', 'watchtower.rb'].concat(view_files) do
+  open('build/watchtower.rb', 'w') do |outfile|
     open('watchtower.rb') do |watchtower|
       while line = watchtower.gets
         outfile.puts line
@@ -28,5 +28,5 @@ end
 
 desc "Remove the build files"
 task :clean do
-  rm_rf 'pkg'
+  rm_rf 'build'
 end
