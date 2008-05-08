@@ -1,7 +1,38 @@
+require 'rubygems'
+Gem::manage_gems
+require 'rake/gempackagetask'
+
 # Variables
 view_files = Dir.glob('views/*')
 
-task :default => ['build/tiwatchtower']
+spec = Gem::Specification.new do |s|
+  s.platform              = Gem::Platform::RUBY
+  s.name                  = 'ticgit-watchtower'
+  s.version               = '0.1.0'
+  s.author                = 'K. Adam Christensen'
+  s.email                 = 'pope@shifteleven.com'
+  s.summary               = 'Provide a nicer looking web interface for ticgit'
+  s.files                 = ['build/tiwatchtower']
+  s.has_rdoc              = false
+  s.bindir                = 'build'
+  s.homepage              = 'http://github.com/pope/ticgit-watchtower'
+  s.executables << 'tiwatchtower'
+  s.add_dependency 'git'
+  s.add_dependency 'sinatra'
+  s.add_dependency 'haml'
+  s.add_dependency 'gravatar'
+  s.add_dependency('ticgit', '>=0.2.0')
+end
+
+Rake::GemPackageTask.new(spec) do |pkg|
+  pkg.need_tar            = true
+end
+
+#tasks
+task :default => "pkg/#{spec.name}-#{spec.version}.gem"
+task "pkg/#{spec.name}-#{spec.version}.gem" => ['build/tiwatchtower'] do
+    puts "generated latest version"
+end
 
 directory 'build'
 
@@ -29,4 +60,5 @@ end
 desc "Remove the build files"
 task :clean do
   rm_rf 'build'
+  rm_rf 'pkg'
 end
