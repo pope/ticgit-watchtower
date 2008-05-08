@@ -1,13 +1,13 @@
 # Variables
 view_files = Dir.glob('views/*')
 
-task :default => ['build/watchtower.rb']
+task :default => ['build/tiwatchtower']
 
 directory 'build'
 
 desc "Builds the single sinatra file for serving everything up"
-file 'build/watchtower.rb' => ['build', 'watchtower.rb'].concat(view_files) do
-  open('build/watchtower.rb', 'w') do |outfile|
+file 'build/tiwatchtower' => ['build', 'watchtower.rb'].concat(view_files) do
+  open('build/tiwatchtower', 'w') do |outfile|
     open('watchtower.rb') do |watchtower|
       while line = watchtower.gets
         outfile.puts line
