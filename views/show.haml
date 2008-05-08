@@ -19,12 +19,47 @@
 
 %h3 Comments
 
-- @ticket.comments.each do |c|
-  .comment
-    %p
-      %img.avatar{:src => Gravatar.new(c.user, :size => 30), :alt => "#{c.user}'s avatar"}
-      Added
-      = c.added.strftime("%m/%d %H:%M")
-      by
-      %strong= c.user
-    %p= c.comment
+- unless @ticket.comments.empty?
+  - @ticket.comments.each do |c|
+    .comment
+      %p
+        %img.avatar{:src => Gravatar.new(c.user, :size => 30), :alt => "#{c.user}'s avatar"}
+        Added
+        = c.added.strftime("%m/%d %H:%M")
+        by
+        %strong= c.user
+      %p= c.comment
+- else
+  %p There are no comments for this issue
+
+
+%h3 Update the Ticket
+
+%form{:action => "/tickets/#{@ticket.ticket_id}", :method => 'POST'}
+  %input{:type => 'hidden', :name => '_method', :value => 'PUT'}
+
+  %dl
+
+    %dt
+      %label{:for => 'ticket_comment'} Comment
+    %dd
+      = find_and_preserve do
+        %textarea#ticket_comment{:name => 'ticket_comment', :rows => 15, :cols => 30}
+
+    %dt
+      %label{:for => 'ticket_state'} State
+    %dd
+      %select#ticket_state{:name => 'ticket_state'}
+        - %w(open resolved hold invalid).each do |state|
+          - options = state == @ticket.state ? { :selected => 'selected' } : {}
+          %option{options, :value => state}= state.capitalize
+
+    %dt
+      %label{:for => 'ticket_tags'} Tags
+    %dd
+      %input#ticket_tags{:type => 'text', :name => 'ticket_tags', :size => 30, :class => 'text', :value => @ticket.tags.join(",")}
+      %br
+      %span separate with commas
+
+  %p
+    %input{:type => 'submit', :value => 'Update Ticket'}

@@ -5,7 +5,7 @@
 #
 # author : K. Adam Christensen
 
-%w(rubygems sinatra git ticgit haml gravatar).each do |dependency| 
+%w(rubygems sinatra git ticgit haml gravatar set).each do |dependency|
   begin
     require dependency
   rescue LoadError => e
@@ -51,7 +51,7 @@ end
 post('/tickets') do
   title = params[:ticket_title].to_s.strip
   if title.size > 1
-    tags = params[:ticket_tags].split(' ').map { |t| t.strip } rescue nil  
+    tags = params[:ticket_tags].split(',').map { |t| t.strip } rescue nil
     comment = params[:ticket_comment].strip rescue nil
     comment = nil if comment.empty?
     t = $ticgit.ticket_new(title, {:comment => comment, :tags => tags})
@@ -61,8 +61,31 @@ post('/tickets') do
   end
 end
 
-get('/tickets/:ticket') do
-  @ticket = $ticgit.ticket_show(params[:ticket])
+get('/tickets/:id') do
+  @ticket = $ticgit.ticket_show(params[:id])
   @title = @ticket.title
   haml :show
+end
+
+put('/tickets/:id') do
+
+  @ticket = $ticgit.ticket_show(params[:id])
+
+  comment = params[:ticket_comment].strip rescue ""
+  unless comment.empty?
+    $ticgit.ticket_comment(comment, params[:id])
+  end
+
+  $ticgit.ticket_change(params[:ticket_state], params[:id])
+
+  original_tags = @ticket.tags.to_set
+  updated_tags = params[:ticket_tags].split(',').map { |t| t.strip }.to_set rescue Set.new
+
+  tags_to_remove = (original_tags - updated_tags).to_a.join(',')
+  $ticgit.ticket_tag(tags_to_remove, params[:id], :remove => true)
+
+  tags_to_add = (updated_tags - original_tags).to_a.join(',')
+  $ticgit.ticket_tag(tags_to_add, params[:id])
+
+  redirect "/tickets/#{@ticket.ticket_id}"
 end
