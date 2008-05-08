@@ -12,7 +12,7 @@ file 'pkg/watchtower.rb' => ['pkg', 'watchtower.rb'].concat(view_files) do
       while line = watchtower.gets
         outfile.puts line
       end
-      outfile.puts "user_in_file_templates!"
+      outfile.puts "use_in_file_templates!"
       outfile.puts "__END__"
     end
     view_files.each do |view_file|
