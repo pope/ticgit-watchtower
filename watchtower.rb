@@ -43,6 +43,24 @@ get('/tickets/tags/:tag') do
   haml :list
 end
 
+get('/tickets/new') do
+  @title = 'New Ticket'
+  haml :new
+end
+
+post('/tickets') do
+  title = params[:ticket_title].to_s.strip
+  if title.size > 1
+    tags = params[:ticket_tags].split(' ').map { |t| t.strip } rescue nil  
+    comment = params[:ticket_comment].strip rescue nil
+    comment = nil if comment.empty?
+    t = $ticgit.ticket_new(title, {:comment => comment, :tags => tags})
+    redirect '/tickets/' + t.ticket_id.to_s
+  else
+    redirect '/tickets/new'
+  end
+end
+
 get('/tickets/:ticket') do
   @ticket = $ticgit.ticket_show(params[:ticket])
   @title = @ticket.title

@@ -1,0 +1,25 @@
+%h1= @title
+
+%form{:action => '/tickets', :method => 'POST'}
+
+  %dl
+    %dt 
+      %label{:for => 'ticket_title'} Title
+    %dd
+      %input#ticket_title{:type => 'text', :name => 'ticket_title', :size => 30, :class => 'text'}
+
+    %dt
+      %label{:for => 'ticket_comment'} Comment
+    %dd
+      = find_and_preserve do 
+        %textarea#ticket_comment{:name => 'ticket_comment', :rows => 15, :cols => 30}
+
+    %dt 
+      %label{:for => 'ticket_tags'} Tags
+    %dd
+      %input#ticket_tags{:type => 'text', :name => 'ticket_tags', :size => 30, :class => 'text'}
+      %br
+      %span each word is a tag
+
+  %p
+    %input{:type => 'submit', :value => 'Create Ticket'}
