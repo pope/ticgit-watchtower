@@ -48,6 +48,12 @@ get('/tickets/tags/:tag') do
   haml :list
 end
 
+get('/tickets/saved_views/:view') do
+  @tickets = $ticgit.ticket_list(:saved => params[:saved_view])
+  @title = "#{params[:view].capitalize} View"
+  haml :list
+end
+
 get('/tickets/new') do
   @title = 'New Ticket'
   haml :new

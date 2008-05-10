@@ -28,9 +28,9 @@
           %h4 Saved Views:
           - unless @saved.empty?
             %ul
-            - @saved.each do |s|
+            - @saved.sort.each do |s|
               %li
-                %a{:href => "/tickets/saved_view/\#{s}"}= s
+                %a{:href => "/tickets/saved_views/#{s}"}= s
           - else
             %p You have no saved views
       #Main= yield
