@@ -13,13 +13,18 @@
   end
 end
 
+unless ARGV[0]
+  $stderr.puts "You must specify a path to a git repository"
+  Process.exit
+end
+
+$ticgit = TicGit.open(ARGV[0].chomp)
+$yui_version = '2.5.1'
+
 get('/screen.css') do
   header 'Content-Type' => 'text/css; charset=utf-8'
   sass :screen
 end
-
-$yui_version = '2.5.1'
-$ticgit = TicGit.open('.')
 
 before do
   @saved = $ticgit.config['list_options'].keys rescue []
