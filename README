@@ -1,0 +1,30 @@
+= Ticgit-Watchtower
+
+Ticgit-Watchtower is a web interface to ticgit, a issue tracker that is built
+into git
+
+== Usage
+
+From the command line
+
+  # tiwatchtower <<path_to_git_repository>>
+
+That will start Sinatra on the default port of 4567.  Any options sinatra has,
+so does tiwatchtower, such as setting the port and setting the environment.
+
+== Installation
+
+Ticgit-Watchtower has the following dependencies
+
+* sinatra
+* haml
+* gravatar
+* git
+* ticgit
+
+Then to compile and install the ticgit-watchtower gem
+
+  # rake
+  # sudo gem install pkg/ticgit-watchtower-0.1.0.gem
+
+Now have fun.
