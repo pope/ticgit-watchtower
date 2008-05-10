@@ -47,6 +47,11 @@
         %textarea#ticket_comment{:name => 'ticket_comment', :rows => 15, :cols => 30}
 
     %dt
+      %label{:for => 'ticket_assigned'} Assigned To
+    %dd
+      %input#ticket_title{:type => 'text', :name => 'ticket_assigned', :size => 30, :class => 'text', :value => @ticket.assigned}
+
+    %dt
       %label{:for => 'ticket_state'} State
     %dd
       %select#ticket_state{:name => 'ticket_state'}

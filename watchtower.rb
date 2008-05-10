@@ -87,7 +87,7 @@ put('/tickets/:id') do
     $ticgit.ticket_comment(comment, params[:id])
   end
 
-  $ticgit.ticket_change(params[:ticket_state], params[:id])
+  $ticgit.ticket_assign(params[:ticket_assigned], params[:id])
 
   original_tags = @ticket.tags.to_set
   updated_tags = params[:ticket_tags].split(',').map { |t| t.strip }.to_set rescue Set.new
@@ -97,6 +97,8 @@ put('/tickets/:id') do
 
   tags_to_add = (updated_tags - original_tags).to_a.join(',')
   $ticgit.ticket_tag(tags_to_add, params[:id])
+
+  $ticgit.ticket_change(params[:ticket_state], params[:id])
 
   redirect "/tickets/#{@ticket.ticket_id}"
 end
