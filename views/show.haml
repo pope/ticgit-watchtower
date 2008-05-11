@@ -28,7 +28,7 @@
         = c.added.strftime("%m/%d %H:%M")
         by
         %strong= c.user
-      %p= c.comment
+      %div= RedCloth.new(c.comment).to_html
 - else
   %p There are no comments for this issue
 

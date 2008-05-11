@@ -21,6 +21,7 @@ Ticgit-Watchtower has the following dependencies
 * gravatar
 * git
 * ticgit
+* RedCloth
 
 Then to compile and install the ticgit-watchtower gem
 

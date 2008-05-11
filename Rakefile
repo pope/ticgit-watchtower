@@ -21,6 +21,7 @@ spec = Gem::Specification.new do |s|
   s.add_dependency 'sinatra'
   s.add_dependency 'haml'
   s.add_dependency 'gravatar'
+  s.add_dependency 'RedCloth'
   s.add_dependency('ticgit', '>=0.2.0')
 end
 

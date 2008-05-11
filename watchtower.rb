@@ -5,7 +5,7 @@
 #
 # author : K. Adam Christensen
 
-%w(rubygems sinatra git ticgit haml gravatar set).each do |dependency|
+%w(rubygems sinatra git ticgit haml gravatar set redcloth).each do |dependency|
   begin
     require dependency
   rescue LoadError => e
